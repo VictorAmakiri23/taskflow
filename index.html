@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow · organize with intent</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-container">
+      <!-- HEADER -->
+      <header>
+        <div class="logo-area">
+          <div class="logo-icon">T</div>
+          <h1>TaskFlow</h1>
+          <span class="badge-version">v2.0</span>
+        </div>
+        <div class="stats-mini" id="statsMini">
+          <span class="stat-item"
+            >📋 <strong id="statTotal">0</strong> tasks</span
+          >
+          <span class="stat-item"
+            >⏳ <strong id="statPending">0</strong> pending</span
+          >
+          <span class="stat-item"
+            >✅ <strong id="statCompleted">0</strong> done</span
+          >
+        </div>
+      </header>
+
+      <!-- MAIN CONTENT GRID -->
+      <div class="main-grid">
+        <!-- LEFT: FORM PANEL -->
+        <aside class="form-panel">
+          <h2 id="formTitle">➕ New task</h2>
+          <form id="taskForm">
+            <input type="hidden" id="taskId" value="" />
+            <div class="form-group">
+              <label for="title">Title *</label>
+              <input
+                type="text"
+                id="title"
+                placeholder="e.g. Design system audit"
+                maxlength="100"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea
+                id="description"
+                placeholder="Add details…"
+                maxlength="500"
+              ></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="priority">Priority</label>
+                <select id="priority">
+                  <option value="High">🔴 High</option>
+                  <option value="Medium" selected>🟡 Medium</option>
+                  <option value="Low">🟢 Low</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="dueDate">Due date</label>
+                <input type="date" id="dueDate" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select id="status">
+                <option value="Pending">⏳ Pending</option>
+                <option value="In Progress">🔄 In Progress</option>
+                <option value="Completed">✅ Completed</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                Add task
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                id="cancelEditBtn"
+                style="display: none"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </aside>
+
+        <!-- RIGHT: TASK LIST + FILTERS -->
+        <section>
+          <!-- FILTER BAR -->
+          <div class="filters-bar">
+            <div class="filter-group">
+              <span class="filter-label">Status</span>
+              <select id="filterStatus" class="filter-select">
+                <option value="All">All</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">Priority</span>
+              <select id="filterPriority" class="filter-select">
+                <option value="All">All</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+            <div class="search-wrapper">
+              <span style="color: #64748b; margin-right: 6px">🔍</span>
+              <input type="text" id="searchInput" placeholder="Search tasks…" />
+            </div>
+          </div>
+
+          <!-- TASK LIST CONTAINER -->
+          <div id="taskListContainer" class="task-list">
+            <!-- Dynamic cards injected here -->
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
